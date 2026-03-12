@@ -1,0 +1,2197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All·ID·Global — Identity Verification & Compliance Platform</title>
+    <meta name="description" content="All ID Global provides enterprise-grade identity verification, KYC, KYB, AML screening, and fraud prevention for businesses worldwide.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+    <style>
+        /*
+         * ALL ID — allid.global
+         * Design System: Adopted from Bain & Company aesthetic
+         * Fonts: Plus Jakarta Sans (≈ Graphik), Source Serif 4 (≈ Tiempos)
+         * Colors: #CC0000, #000, #fff, #f9f9f9
+         */
+
+        :root {
+            --red: #CC0000;
+            --red-dark: #A30000;
+            --black: #000000;
+            --white: #FFFFFF;
+            --gray-bg: #F9F9F9;
+            --gray-border: #E0E0E0;
+            --gray-text: #666666;
+            --gray-light: #999999;
+
+            --sans: 'Plus Jakarta Sans', Helvetica, Arial, sans-serif;
+            --serif: 'Source Serif 4', Georgia, serif;
+
+            --container: 1360px;
+            --container-narrow: 1100px;
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--serif);
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--black);
+            background: var(--white);
+        }
+
+        /* =====================================================
+           TYPOGRAPHY — Matching Bain's Graphik/Tiempos system
+           ===================================================== */
+
+        h1, h2, h3, h4 {
+            font-family: var(--sans);
+            font-weight: 500;
+            line-height: 1.1;
+            color: var(--black);
+        }
+
+        h1 {
+            font-size: clamp(36px, 5vw, 60px);
+            letter-spacing: -0.01em;
+        }
+
+        h2 {
+            font-size: clamp(28px, 3.5vw, 44px);
+            letter-spacing: -0.01em;
+        }
+
+        h3 {
+            font-size: clamp(20px, 2vw, 28px);
+        }
+
+        p {
+            font-family: var(--sans);
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--black);
+        }
+
+        .text-serif {
+            font-family: var(--serif);
+        }
+
+        .text-gray { color: var(--gray-text); }
+        .text-light { color: var(--gray-light); }
+        .text-red { color: var(--red); }
+        .text-white { color: var(--white); }
+
+        a {
+            color: var(--black);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--red);
+        }
+
+        /* =====================================================
+           LAYOUT
+           ===================================================== */
+
+        .container {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .container-narrow {
+            max-width: var(--container-narrow);
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        /* =====================================================
+           TOP BAR — Bain-style dark utility bar
+           ===================================================== */
+
+        .topbar {
+            background: var(--black);
+            padding: 8px 0;
+        }
+
+        .topbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .topbar-left,
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .topbar a {
+            color: rgba(255,255,255,0.65);
+            font-family: var(--sans);
+            font-size: 11px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .topbar a:hover {
+            color: var(--white);
+        }
+
+        .topbar-sep {
+            color: rgba(255,255,255,0.2);
+            font-size: 11px;
+        }
+
+        /* =====================================================
+           NAVBAR — Bain-style main navigation
+           ===================================================== */
+
+        .navbar {
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .navbar-left {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        /* Logo — C4 Tight: All·ID·Global */
+        .logo {
+            display: inline-flex;
+            align-items: baseline;
+            text-decoration: none;
+            white-space: nowrap;
+            font-family: var(--sans);
+            font-size: 20px;
+        }
+
+        .logo-all {
+            font-weight: 800;
+            color: var(--black);
+        }
+
+        .logo-sep {
+            font-weight: 700;
+            color: var(--red);
+            font-size: 0.65em;
+            vertical-align: 0.12em;
+            margin: 0 0.5px;
+        }
+
+        .logo-id {
+            font-weight: 800;
+            color: var(--red);
+        }
+
+        .logo-global {
+            font-weight: 500;
+            color: var(--gray-text);
+            letter-spacing: 0.03em;
+        }
+
+        /* Nav Links — Bain uses small uppercase */
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: var(--sans);
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--black);
+            text-decoration: none;
+            letter-spacing: 0.02em;
+            transition: color 0.2s;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--red);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -22px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--red);
+        }
+
+        .navbar-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-search {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: var(--sans);
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--black);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-cta-btn {
+            font-family: var(--sans);
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--white);
+            background: var(--red);
+            border: none;
+            padding: 8px 20px;
+            cursor: pointer;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .nav-cta-btn:hover {
+            background: var(--red-dark);
+            color: var(--white);
+        }
+
+        /* Mobile Toggle */
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--black);
+        }
+
+        /* =====================================================
+           HERO — Bain-style red hero with white text
+           ===================================================== */
+
+        .hero {
+            background: var(--red);
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Subtle geometric overlay like Bain's curved lines */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60%;
+            height: 100%;
+            background:
+                radial-gradient(ellipse 100% 80% at 80% 50%, rgba(255,255,255,0.04) 0%, transparent 60%),
+                radial-gradient(circle at 70% 30%, rgba(0,0,0,0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        /* Curved grid lines */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 700px;
+            height: 700px;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-inner {
+            padding: 100px 0 80px;
+            max-width: 680px;
+        }
+
+        .hero-label {
+            font-family: var(--sans);
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            color: var(--white);
+            font-size: clamp(36px, 5.5vw, 64px);
+            line-height: 1.06;
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+
+        .hero-desc {
+            font-family: var(--serif);
+            font-size: 19px;
+            line-height: 1.65;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 40px;
+            max-width: 540px;
+            font-weight: 300;
+        }
+
+        /* Bain-style arrow CTA */
+        .cta-arrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--white);
+            font-family: var(--sans);
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            transition: gap 0.3s ease;
+        }
+
+        .cta-arrow:hover {
+            color: var(--white);
+            gap: 20px;
+        }
+
+        .cta-arrow-line {
+            display: block;
+            width: 40px;
+            height: 1px;
+            background: var(--white);
+            position: relative;
+        }
+
+        .cta-arrow-line::after {
+            content: '';
+            position: absolute;
+            right: -1px;
+            top: -4px;
+            width: 9px;
+            height: 9px;
+            border-right: 1.5px solid var(--white);
+            border-top: 1.5px solid var(--white);
+            transform: rotate(45deg);
+        }
+
+        /* =====================================================
+           STATS STRIP
+           ===================================================== */
+
+        .stats-strip {
+            background: var(--black);
+            padding: 48px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-num {
+            font-family: var(--sans);
+            font-size: clamp(28px, 3vw, 40px);
+            font-weight: 500;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 8px;
+        }
+
+        .stat-desc {
+            font-family: var(--sans);
+            font-size: 13px;
+            font-weight: 400;
+            color: rgba(255,255,255,0.5);
+            letter-spacing: 0.02em;
+        }
+
+        /* =====================================================
+           INTRO BLOCK — like Bain's "Consulting Services" intro
+           ===================================================== */
+
+        .intro-block {
+            padding: 100px 0 80px;
+        }
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .intro-grid h2 {
+            font-size: clamp(36px, 4.5vw, 56px);
+            line-height: 1.06;
+        }
+
+        .intro-text {
+            font-family: var(--serif);
+            font-size: 18px;
+            line-height: 1.75;
+            color: var(--black);
+            font-weight: 300;
+        }
+
+        /* =====================================================
+           SERVICES GRID — Bain's 3-column with top borders
+           ===================================================== */
+
+        .services-section {
+            padding: 0 0 100px;
+        }
+
+        .services-heading {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .services-heading h2 {
+            font-size: clamp(28px, 3vw, 36px);
+            margin-bottom: 8px;
+        }
+
+        .heading-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 16px;
+        }
+
+        .heading-line-bar {
+            height: 1px;
+            width: 80px;
+            background: var(--gray-border);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+        }
+
+        .service-item {
+            padding: 32px 32px 40px;
+            border-top: 1px solid var(--gray-border);
+            transition: background 0.3s;
+        }
+
+        .service-item:hover {
+            background: var(--gray-bg);
+        }
+
+        .service-item h3 {
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 1.35;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .service-arrow {
+            color: var(--red);
+            font-size: 12px;
+            flex-shrink: 0;
+            margin-top: 6px;
+        }
+
+        .service-item p {
+            font-family: var(--serif);
+            font-size: 15px;
+            line-height: 1.65;
+            color: var(--gray-text);
+            font-weight: 300;
+        }
+
+        .service-item a {
+            text-decoration: none;
+            display: block;
+        }
+
+        .service-item a:hover h3 {
+            color: var(--red);
+        }
+
+        /* =====================================================
+           PLATFORM SECTION
+           ===================================================== */
+
+        .platform-section {
+            background: var(--gray-bg);
+            padding: 100px 0;
+        }
+
+        .platform-header {
+            margin-bottom: 60px;
+        }
+
+        .platform-header h2 {
+            margin-bottom: 16px;
+        }
+
+        .platform-header p {
+            font-family: var(--serif);
+            font-size: 18px;
+            line-height: 1.7;
+            color: var(--gray-text);
+            max-width: 600px;
+            font-weight: 300;
+        }
+
+        .platform-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .platform-capabilities {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+
+        .capability {
+            padding: 24px;
+            border-top: 1px solid var(--gray-border);
+            border-right: 1px solid var(--gray-border);
+        }
+
+        .capability:nth-child(2n) {
+            border-right: none;
+        }
+
+        .capability h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .capability p {
+            font-family: var(--serif);
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--gray-text);
+            font-weight: 300;
+        }
+
+        /* Platform flow visual */
+        .platform-flow {
+            background: var(--black);
+            padding: 40px;
+        }
+
+        .platform-flow h3 {
+            color: var(--white);
+            font-size: 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 32px;
+        }
+
+        .flow-step {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .flow-step:last-of-type {
+            border-bottom: none;
+        }
+
+        .flow-num {
+            width: 28px;
+            height: 28px;
+            background: var(--red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-family: var(--sans);
+            font-size: 12px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .flow-label {
+            font-family: var(--sans);
+            font-size: 14px;
+            color: rgba(255,255,255,0.85);
+            font-weight: 400;
+        }
+
+        .flow-result {
+            margin-top: 28px;
+            padding: 20px;
+            background: rgba(204, 0, 0, 0.12);
+        }
+
+        .flow-result-label {
+            font-family: var(--sans);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255,255,255,0.45);
+            margin-bottom: 4px;
+        }
+
+        .flow-result-num {
+            font-family: var(--sans);
+            font-size: 32px;
+            font-weight: 500;
+            color: var(--white);
+        }
+
+        /* =====================================================
+           SOLUTIONS — Industry grid
+           ===================================================== */
+
+        .solutions-section {
+            padding: 100px 0;
+        }
+
+        .solutions-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .solutions-header h2 {
+            margin-bottom: 12px;
+        }
+
+        .solutions-header p {
+            font-family: var(--serif);
+            font-size: 18px;
+            color: var(--gray-text);
+            max-width: 500px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            border-top: 1px solid var(--gray-border);
+            border-left: 1px solid var(--gray-border);
+        }
+
+        .solution-card {
+            padding: 40px 32px;
+            border-right: 1px solid var(--gray-border);
+            border-bottom: 1px solid var(--gray-border);
+            transition: background 0.3s;
+            cursor: default;
+        }
+
+        .solution-card:hover {
+            background: var(--gray-bg);
+        }
+
+        .solution-icon {
+            font-size: 28px;
+            margin-bottom: 16px;
+            line-height: 1;
+        }
+
+        .solution-card h3 {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .solution-card p {
+            font-family: var(--serif);
+            font-size: 14px;
+            line-height: 1.65;
+            color: var(--gray-text);
+            font-weight: 300;
+        }
+
+        /* =====================================================
+           WHY ALL ID — Split layout
+           ===================================================== */
+
+        .why-section {
+            background: var(--gray-bg);
+            padding: 100px 0;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .why-header h2 {
+            margin-bottom: 40px;
+        }
+
+        .why-point {
+            padding: 24px 0;
+            border-top: 1px solid var(--gray-border);
+        }
+
+        .why-point:last-child {
+            border-bottom: 1px solid var(--gray-border);
+        }
+
+        .why-point h3 {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .why-point p {
+            font-family: var(--serif);
+            font-size: 15px;
+            line-height: 1.65;
+            color: var(--gray-text);
+            font-weight: 300;
+        }
+
+        /* Stats cards */
+        .why-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .why-stat-card {
+            background: var(--white);
+            padding: 32px 24px;
+            text-align: center;
+            border: 1px solid var(--gray-border);
+        }
+
+        .why-stat-card .stat-num {
+            color: var(--red);
+            font-size: 36px;
+            margin-bottom: 6px;
+        }
+
+        .why-stat-card .stat-desc {
+            color: var(--gray-text);
+            font-size: 13px;
+        }
+
+        /* Recognition box */
+        .recognition-box {
+            margin-top: 16px;
+            background: var(--black);
+            padding: 32px;
+        }
+
+        .recognition-label {
+            font-family: var(--sans);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 12px;
+        }
+
+        .recognition-box h3 {
+            color: var(--white);
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 12px;
+            line-height: 1.35;
+        }
+
+        .recognition-box p {
+            font-family: var(--serif);
+            font-size: 14px;
+            line-height: 1.65;
+            color: rgba(255,255,255,0.55);
+            font-weight: 300;
+        }
+
+        /* =====================================================
+           AWARDS ROW
+           ===================================================== */
+
+        .awards-section {
+            padding: 80px 0;
+            border-top: 1px solid var(--gray-border);
+        }
+
+        .awards-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .awards-header h2 {
+            font-size: 28px;
+        }
+
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            border-top: 1px solid var(--gray-border);
+            border-left: 1px solid var(--gray-border);
+        }
+
+        .award-item {
+            padding: 32px 24px;
+            text-align: center;
+            border-right: 1px solid var(--gray-border);
+            border-bottom: 1px solid var(--gray-border);
+        }
+
+        .award-org {
+            font-family: var(--sans);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--red);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .award-title {
+            font-family: var(--sans);
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--black);
+            line-height: 1.45;
+        }
+
+        /* =====================================================
+           CTA SECTION
+           ===================================================== */
+
+        .cta-section {
+            background: var(--red);
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            right: -200px;
+            width: 600px;
+            height: 600px;
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 50%;
+        }
+
+        .cta-inner {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: var(--white);
+            font-size: clamp(28px, 3.5vw, 44px);
+            margin-bottom: 16px;
+        }
+
+        .cta-section p {
+            font-family: var(--serif);
+            font-size: 18px;
+            color: rgba(255,255,255,0.75);
+            max-width: 500px;
+            margin: 0 auto 36px;
+            font-weight: 300;
+        }
+
+        .cta-btn-white {
+            display: inline-block;
+            background: var(--white);
+            color: var(--red);
+            font-family: var(--sans);
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 14px 36px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .cta-btn-white:hover {
+            background: var(--gray-bg);
+            color: var(--red-dark);
+        }
+
+        /* =====================================================
+           FOOTER — Bain-style dark footer
+           ===================================================== */
+
+        .footer {
+            background: var(--black);
+            padding: 60px 0 32px;
+            color: var(--white);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .footer-brand .logo {
+            margin-bottom: 16px;
+        }
+
+        .footer-brand p {
+            font-family: var(--serif);
+            font-size: 14px;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.4);
+            max-width: 320px;
+            font-weight: 300;
+        }
+
+        .footer h4 {
+            font-family: var(--sans);
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255,255,255,0.35);
+            margin-bottom: 16px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+
+        .footer-links a {
+            font-family: var(--sans);
+            font-size: 14px;
+            font-weight: 400;
+            color: rgba(255,255,255,0.6);
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-bottom p {
+            font-family: var(--sans);
+            font-size: 12px;
+            color: rgba(255,255,255,0.25);
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-bottom-links a {
+            font-family: var(--sans);
+            font-size: 12px;
+            color: rgba(255,255,255,0.25);
+        }
+
+        .footer-bottom-links a:hover {
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* =====================================================
+           ANIMATIONS
+           ===================================================== */
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .fade-in.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =====================================================
+           LOGOS BAR
+           ===================================================== */
+
+        .logos-section {
+            padding: 48px 0;
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-border);
+        }
+
+        .logos-label {
+            font-family: var(--sans);
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--gray-light);
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .logos-strip {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 48px;
+            flex-wrap: wrap;
+            opacity: 0.45;
+        }
+
+        .logos-strip span {
+            font-family: var(--sans);
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--black);
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        /* =====================================================
+           ROI SECTION
+           ===================================================== */
+
+        .roi-section {
+            padding: 100px 0;
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .roi-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .roi-header h2 {
+            font-family: var(--sans);
+            font-size: 42px;
+            font-weight: 500;
+            line-height: 1.15;
+            color: var(--white);
+        }
+
+        .roi-header p {
+            font-family: var(--serif);
+            font-size: 18px;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.65);
+            max-width: 640px;
+            margin: 24px auto 0;
+        }
+
+        .roi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+        }
+
+        .roi-card {
+            padding: 40px 32px;
+            border-left: 1px solid rgba(255,255,255,0.12);
+            text-align: center;
+        }
+
+        .roi-card:first-child {
+            border-left: none;
+        }
+
+        .roi-num {
+            font-family: var(--sans);
+            font-size: 52px;
+            font-weight: 600;
+            color: var(--red);
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .roi-label {
+            font-family: var(--sans);
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 8px;
+        }
+
+        .roi-desc {
+            font-family: var(--serif);
+            font-size: 15px;
+            line-height: 1.5;
+            color: rgba(255,255,255,0.65);
+        }
+
+        .roi-source {
+            text-align: center;
+            margin-top: 48px;
+            font-family: var(--sans);
+            font-size: 12px;
+            color: rgba(255,255,255,0.35);
+            letter-spacing: 0.5px;
+        }
+
+        /* =====================================================
+           INTEGRATION SECTION
+           ===================================================== */
+
+        .integration-section {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .integration-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .integration-header h2 {
+            font-family: var(--sans);
+            font-size: 42px;
+            font-weight: 500;
+            line-height: 1.15;
+        }
+
+        .integration-header p {
+            font-family: var(--serif);
+            font-size: 18px;
+            line-height: 1.7;
+            color: var(--gray-text);
+            max-width: 640px;
+            margin: 20px auto 0;
+        }
+
+        .integration-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+        }
+
+        .integration-card {
+            padding: 48px 32px;
+            border: 1px solid var(--gray-border);
+            border-right: none;
+            text-align: center;
+            transition: background 0.3s;
+        }
+
+        .integration-card:last-child {
+            border-right: 1px solid var(--gray-border);
+        }
+
+        .integration-card:hover {
+            background: var(--gray-bg);
+        }
+
+        .integration-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .integration-card h3 {
+            font-family: var(--sans);
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .integration-card p {
+            font-family: var(--serif);
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--gray-text);
+        }
+
+        .integration-card .tag {
+            display: inline-block;
+            margin-top: 16px;
+            font-family: var(--sans);
+            font-size: 11px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 6px 14px;
+            border: 1px solid var(--gray-border);
+            border-radius: 3px;
+            color: var(--gray-text);
+        }
+
+        /* =====================================================
+           TESTIMONIALS SECTION
+           ===================================================== */
+
+        .testimonials-section {
+            padding: 100px 0;
+            background: var(--gray-bg);
+        }
+
+        .testimonials-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .testimonials-header h2 {
+            font-family: var(--sans);
+            font-size: 42px;
+            font-weight: 500;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            padding: 40px;
+            border: 1px solid var(--gray-border);
+        }
+
+        .testimonial-quote {
+            font-family: var(--serif);
+            font-size: 17px;
+            line-height: 1.7;
+            color: var(--black);
+            margin-bottom: 32px;
+            position: relative;
+            padding-left: 20px;
+            border-left: 3px solid var(--red);
+        }
+
+        .testimonial-author {
+            font-family: var(--sans);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--black);
+        }
+
+        .testimonial-role {
+            font-family: var(--sans);
+            font-size: 13px;
+            color: var(--gray-text);
+            margin-top: 4px;
+        }
+
+        /* =====================================================
+           FAQ SECTION
+           ===================================================== */
+
+        .faq-section {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .faq-header h2 {
+            font-family: var(--sans);
+            font-size: 42px;
+            font-weight: 500;
+        }
+
+        .faq-list {
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--gray-border);
+        }
+
+        .faq-item:first-child {
+            border-top: 1px solid var(--gray-border);
+        }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 28px 0;
+            font-family: var(--sans);
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--black);
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .faq-question:hover {
+            color: var(--red);
+        }
+
+        .faq-toggle {
+            font-size: 22px;
+            font-weight: 300;
+            flex-shrink: 0;
+            transition: transform 0.3s;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.35s ease;
+        }
+
+        .faq-answer.open {
+            max-height: 300px;
+        }
+
+        .faq-answer-inner {
+            padding: 0 0 28px;
+            font-family: var(--serif);
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--gray-text);
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        /* =====================================================
+           RESPONSIVE
+           ===================================================== */
+
+        @media (max-width: 1024px) {
+            .container { padding: 0 32px; }
+            .intro-grid { grid-template-columns: 1fr; gap: 32px; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .platform-grid { grid-template-columns: 1fr; }
+            .why-grid { grid-template-columns: 1fr; gap: 48px; }
+            .solutions-grid { grid-template-columns: repeat(2, 1fr); }
+            .awards-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .roi-grid { grid-template-columns: repeat(2, 1fr); }
+            .roi-card { border-left: none; border-bottom: 1px solid rgba(255,255,255,0.12); }
+            .integration-grid { grid-template-columns: repeat(2, 1fr); }
+            .integration-card { border-right: 1px solid var(--gray-border); }
+            .integration-card:nth-child(2) { border-right: 1px solid var(--gray-border); }
+            .testimonials-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            section { padding: 60px 0; }
+            .container { padding: 0 20px; }
+            .topbar { display: none; }
+            .nav-links { display: none; }
+            .nav-toggle { display: flex; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 64px;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                padding: 24px 20px;
+                border-bottom: 1px solid var(--gray-border);
+                box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+                gap: 16px;
+                z-index: 999;
+            }
+            .hero-inner { padding: 60px 0; }
+            .services-grid { grid-template-columns: 1fr; }
+            .solutions-grid { grid-template-columns: 1fr; }
+            .platform-capabilities { grid-template-columns: 1fr; }
+            .capability { border-right: none; }
+            .why-stats { grid-template-columns: 1fr; }
+            .awards-grid { grid-template-columns: 1fr 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+            .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+            .stats-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+            .roi-grid { grid-template-columns: 1fr; }
+            .roi-num { font-size: 40px; }
+            .roi-header h2 { font-size: 32px; }
+            .integration-grid { grid-template-columns: 1fr; }
+            .integration-card { border-right: 1px solid var(--gray-border); }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .logos-strip { gap: 28px; }
+            .logos-strip span { font-size: 13px; }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid { grid-template-columns: 1fr; }
+            .awards-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========================= TOP BAR ========================= -->
+    <div class="topbar">
+        <div class="container">
+            <div class="topbar-left">
+                <a href="mailto:contact@allid.global">Contact</a>
+                <a href="#">Careers</a>
+            </div>
+            <div class="topbar-right">
+                <a href="index.html" style="color:#fff">Global</a>
+                <span class="topbar-sep">|</span>
+                <a href="index-th.html">TH</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================= NAVBAR ========================= -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-left">
+                <a href="#" class="logo">
+                    <span class="logo-all">All</span><span class="logo-sep">·</span><span class="logo-id">ID</span><span class="logo-sep">·</span><span class="logo-global">Global</span>
+                </a>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#products" class="active">Products</a></li>
+                    <li><a href="#platform">Platform</a></li>
+                    <li><a href="#solutions">Solutions</a></li>
+                    <li><a href="#why">Why All ID</a></li>
+                    <li><a href="#awards">Recognition</a></li>
+                </ul>
+            </div>
+            <div class="navbar-right">
+                <button class="nav-search" aria-label="Search">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                    Explore
+                </button>
+                <a href="#contact" class="nav-cta-btn">Get Started</a>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu" onclick="document.getElementById('navLinks').classList.toggle('open')">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ========================= HERO ========================= -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-inner">
+                <div class="hero-label">Identity Verification &amp; Compliance Platform</div>
+                <h1>Trusted identity<br>verification for<br>Thailand and beyond.</h1>
+                <p class="hero-desc">Enterprise-grade KYC, KYB, AML screening, and fraud prevention. One configurable platform, built for businesses operating across Southeast Asia.</p>
+                <a href="#contact" class="cta-arrow">
+                    Talk to our team
+                    <span class="cta-arrow-line"></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================= STATS ========================= -->
+    <div class="stats-strip">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="fade-in">
+                    <div class="stat-num">220+</div>
+                    <div class="stat-desc">Countries &amp; territories</div>
+                </div>
+                <div class="fade-in">
+                    <div class="stat-num">14,000+</div>
+                    <div class="stat-desc">Document types recognized</div>
+                </div>
+                <div class="fade-in">
+                    <div class="stat-num">&lt;20s</div>
+                    <div class="stat-desc">Average verification time</div>
+                </div>
+                <div class="fade-in">
+                    <div class="stat-num">99.98%</div>
+                    <div class="stat-desc">Deepfake detection accuracy</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================= CLIENT LOGOS ========================= -->
+    <section class="logos-section">
+        <div class="container">
+            <div class="logos-label">Trusted by leading businesses across Southeast Asia</div>
+            <div class="logos-strip fade-in">
+                <span>One Wallet</span>
+                <span>All Express</span>
+                <span>StayVerse</span>
+                <span>Quanty Agency</span>
+                <span>One Space</span>
+                <span>Single Cluster</span>
+                <span>Ready Express</span>
+                <span>GoShip</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================= INTRO BLOCK ========================= -->
+    <section class="intro-block" id="products">
+        <div class="container">
+            <div class="intro-grid fade-in">
+                <h2>Products</h2>
+                <p class="intro-text">Our identity verification platform covers the full compliance lifecycle — from initial screening and user onboarding through continuous monitoring and fraud prevention. We bring deep regional expertise, powered by globally recognized infrastructure serving thousands of enterprises worldwide.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================= SERVICES GRID ========================= -->
+    <section class="services-section">
+        <div class="container">
+
+            <!-- How We Help — Bain style centered heading -->
+            <div class="services-heading fade-in">
+                <div class="heading-line">
+                    <span class="heading-line-bar"></span>
+                    <h2>How We Help</h2>
+                    <span class="heading-line-bar"></span>
+                </div>
+            </div>
+
+            <div class="services-grid fade-in">
+
+                <div class="service-item">
+                    <a href="#contact">
+                        <h3>
+                            User Verification (eKYC)
+                            <span class="service-arrow">&#9654;</span>
+                        </h3>
+                        <p>AI-powered identity document verification with biometric liveness detection and deepfake defense. Verify users globally in under 20 seconds, fully compliant with PDPA and local regulations.</p>
+                    </a>
+                </div>
+
+                <div class="service-item">
+                    <a href="#contact">
+                        <h3>
+                            Business Verification (KYB)
+                            <span class="service-arrow">&#9654;</span>
+                        </h3>
+                        <p>Automated registry checks across 600M+ commercial records, UBO identification, and corporate document review. Reduce manual verification by 75% across 140+ countries.</p>
+                    </a>
+                </div>
+
+                <div class="service-item">
+                    <a href="#contact">
+                        <h3>
+                            AML Screening
+                            <span class="service-arrow">&#9654;</span>
+                        </h3>
+                        <p>Sanctions, PEP, and adverse media screening from 11,000+ data sources. Continuous monitoring ensures ongoing compliance with AMLO and international AML requirements.</p>
+                    </a>
+                </div>
+
+                <div class="service-item">
+                    <a href="#contact">
+                        <h3>
+                            Transaction Monitoring
+                            <span class="service-arrow">&#9654;</span>
+                        </h3>
+                        <p>Real-time transaction monitoring with 300+ pre-built rules and AI-driven anomaly detection. Reduce audit preparation time by 90% with automated FIU report generation.</p>
+                    </a>
+                </div>
+
+                <div class="service-item">
+                    <a href="#contact">
+                        <h3>
+                            Fraud Prevention
+                            <span class="service-arrow">&#9654;</span>
+                        </h3>
+                        <p>Full-lifecycle fraud defense — new account fraud, identity fraud, account takeover, payment fraud, and money muling prevention. Detect synthetic identities and network fraud with 1.4B+ enriched identity signals.</p>
+                    </a>
+                </div>
+
+                <div class="service-item">
+                    <a href="#contact">
+                        <h3>
+                            Reusable KYC
+                            <span class="service-arrow">&#9654;</span>
+                        </h3>
+                        <p>Users verify once and access services across your entire partner ecosystem. 92% pass rate, 30% increase in completion, and verification in under 10 seconds via API.</p>
+                    </a>
+                </div>
+
+                <div class="service-item">
+                    <a href="#contact">
+                        <h3>
+                            Non-Document Verification
+                            <span class="service-arrow">&#9654;</span>
+                        </h3>
+                        <p>Verify identity without documents using government, banking, and credit databases. Average 4.5-second verification reaching 2.9B+ customers across 20+ countries.</p>
+                    </a>
+                </div>
+
+                <div class="service-item">
+                    <a href="#contact">
+                        <h3>
+                            Liveness &amp; Deepfake Defense
+                            <span class="service-arrow">&#9654;</span>
+                        </h3>
+                        <p>99.98% deepfake detection on first attempt. AI-powered pixel analysis defending against masks, wax figures, AI avatars, and lookalikes. iBeta certified.</p>
+                    </a>
+                </div>
+
+                <div class="service-item">
+                    <a href="#contact">
+                        <h3>
+                            Compliance Consulting
+                            <span class="service-arrow">&#9654;</span>
+                        </h3>
+                        <p>Navigate Thailand's PDPA, AMLO, and Bank of Thailand regulations with expert guidance. End-to-end compliance advisory tailored for your industry and market.</p>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================= PLATFORM ========================= -->
+    <section class="platform-section" id="platform">
+        <div class="container">
+            <div class="platform-header fade-in">
+                <h2>One platform.<br>Complete control.</h2>
+                <p>Manage your entire compliance operation from a single, configurable dashboard — powered by adaptive AI, designed for global scale.</p>
+            </div>
+
+            <div class="platform-grid">
+                <div class="platform-capabilities fade-in">
+                    <div class="capability">
+                        <h4>Case Management</h4>
+                        <p>Centralized workspace for alerts, documents, and decision tracking.</p>
+                    </div>
+                    <div class="capability">
+                        <h4>AI Copilot</h4>
+                        <p>AI-assisted analysis to filter false positives and surface genuine risks.</p>
+                    </div>
+                    <div class="capability">
+                        <h4>Workflow Builder</h4>
+                        <p>No-code verification flows with conditional triggers and routing.</p>
+                    </div>
+                    <div class="capability">
+                        <h4>Risk Scoring</h4>
+                        <p>Real-time evaluation based on transactions and user behavior patterns.</p>
+                    </div>
+                    <div class="capability">
+                        <h4>Custom Analytics</h4>
+                        <p>Dashboards and compliance reporting tailored to your needs.</p>
+                    </div>
+                    <div class="capability">
+                        <h4>API &amp; SDK</h4>
+                        <p>RESTful API and mobile SDKs for seamless integration into any stack.</p>
+                    </div>
+                </div>
+
+                <div class="platform-flow fade-in">
+                    <h3>Verification Flow</h3>
+                    <div class="flow-step">
+                        <div class="flow-num">1</div>
+                        <div class="flow-label">User initiates verification</div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="flow-num">2</div>
+                        <div class="flow-label">Document capture &amp; OCR extraction</div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="flow-num">3</div>
+                        <div class="flow-label">Biometric liveness check</div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="flow-num">4</div>
+                        <div class="flow-label">AML &amp; sanctions screening</div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="flow-num">5</div>
+                        <div class="flow-label">Risk scoring &amp; decision</div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="flow-num">6</div>
+                        <div class="flow-label">Ongoing monitoring</div>
+                    </div>
+                    <div class="flow-result">
+                        <div class="flow-result-label">Average completion</div>
+                        <div class="flow-result-num">Under 20 seconds</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================= SOLUTIONS ========================= -->
+    <section class="solutions-section" id="solutions">
+        <div class="container">
+            <div class="solutions-header fade-in">
+                <div class="heading-line">
+                    <span class="heading-line-bar"></span>
+                    <h2>Solutions by Industry</h2>
+                    <span class="heading-line-bar"></span>
+                </div>
+                <p>Tailored compliance for the sectors driving Thailand's economy.</p>
+            </div>
+
+            <div class="solutions-grid fade-in">
+                <div class="solution-card">
+                    <div class="solution-icon">&#127974;</div>
+                    <h3>Financial Services</h3>
+                    <p>Bank-grade KYC/AML for fintech, banking, lending, and insurance — aligned with Bank of Thailand and AMLO requirements.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">&#9992;&#65039;</div>
+                    <h3>Tourism &amp; Hospitality</h3>
+                    <p>Fast-track foreigner onboarding for hotels, travel platforms, and tourist services across Thailand and Southeast Asia.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">&#127970;</div>
+                    <h3>Real Estate</h3>
+                    <p>Verify international property buyers and comply with AMLO regulations for high-value real estate transactions.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">&#128179;</div>
+                    <h3>Payments</h3>
+                    <p>Onboard merchants and customers securely for payment platforms, e-wallets, and money transfer services with full AML compliance.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">&#128722;</div>
+                    <h3>E-Commerce &amp; Marketplace</h3>
+                    <p>Seller and buyer verification at scale — prevent fraud, protect your marketplace, and build user trust.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">&#9939;&#65039;</div>
+                    <h3>Crypto &amp; Digital Assets</h3>
+                    <p>Comprehensive compliance for exchanges and VASPs — KYC, transaction monitoring, crypto monitoring, and Travel Rule compliance.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">&#128666;</div>
+                    <h3>Logistics &amp; Mobility</h3>
+                    <p>Driver and partner verification for delivery, ride-hailing, and logistics platforms operating across Thailand.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">&#127918;</div>
+                    <h3>iGaming &amp; Entertainment</h3>
+                    <p>Age verification, identity checks, and responsible gaming compliance for online gaming and entertainment platforms.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================= ROI SECTION ========================= -->
+    <section class="roi-section">
+        <div class="container">
+            <div class="roi-header fade-in">
+                <h2>Proven return on investment.</h2>
+                <p>Independent analysis confirms that investing in identity verification and fraud prevention delivers measurable, rapid returns for businesses of all sizes.</p>
+            </div>
+            <div class="roi-grid fade-in">
+                <div class="roi-card">
+                    <div class="roi-num">240%</div>
+                    <div class="roi-label">ROI</div>
+                    <div class="roi-desc">Return on investment from liveness detection and identity verification deployment</div>
+                </div>
+                <div class="roi-card">
+                    <div class="roi-num">$3.21M</div>
+                    <div class="roi-label">Net Present Value</div>
+                    <div class="roi-desc">Three-year NPV for organizations implementing full verification suite</div>
+                </div>
+                <div class="roi-card">
+                    <div class="roi-num">272%</div>
+                    <div class="roi-label">TM ROI</div>
+                    <div class="roi-desc">Return on investment from AML transaction monitoring deployment</div>
+                </div>
+                <div class="roi-card">
+                    <div class="roi-num">&lt;6mo</div>
+                    <div class="roi-label">Payback Period</div>
+                    <div class="roi-desc">Average time to recover the initial investment across all products</div>
+                </div>
+            </div>
+            <div class="roi-source fade-in">Source: Forrester Total Economic Impact Study, 2025</div>
+        </div>
+    </section>
+
+    <!-- ========================= INTEGRATION ========================= -->
+    <section class="integration-section" id="integration">
+        <div class="container">
+            <div class="integration-header fade-in">
+                <h2>Integrate in hours, not weeks.</h2>
+                <p>Multiple integration pathways designed for any technical stack and team size. Go live quickly with minimal development effort.</p>
+            </div>
+            <div class="integration-grid fade-in">
+                <div class="integration-card">
+                    <div class="integration-icon">&#128279;</div>
+                    <h3>Web SDK</h3>
+                    <p>Drop-in JavaScript widget for web applications. Customizable UI, responsive design, and full-featured verification flow in a single embed.</p>
+                    <span class="tag">Frontend</span>
+                </div>
+                <div class="integration-card">
+                    <div class="integration-icon">&#128241;</div>
+                    <h3>Mobile SDK</h3>
+                    <p>Native iOS and Android SDKs with optimized camera capture, real-time guidance, and seamless biometric verification.</p>
+                    <span class="tag">iOS &amp; Android</span>
+                </div>
+                <div class="integration-card">
+                    <div class="integration-icon">&#9881;&#65039;</div>
+                    <h3>REST API</h3>
+                    <p>Full-featured RESTful API for server-side integration. Complete control over the verification flow, webhooks, and data retrieval.</p>
+                    <span class="tag">Backend</span>
+                </div>
+                <div class="integration-card">
+                    <div class="integration-icon">&#127760;</div>
+                    <h3>No-Code Builder</h3>
+                    <p>Visual workflow builder to configure verification flows, risk rules, and approval logic without writing a single line of code.</p>
+                    <span class="tag">No-Code</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================= TESTIMONIALS ========================= -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="testimonials-header fade-in">
+                <h2>What our clients say.</h2>
+            </div>
+            <div class="testimonials-grid fade-in">
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">All ID cut our customer onboarding time from 3 days to under 20 seconds. The KYC verification accuracy is remarkable, and the Thai-language support made it easy for our operations team to adopt.</div>
+                    <div class="testimonial-author">Head of Operations</div>
+                    <div class="testimonial-role">Leading Thai Fintech</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">The Reusable KYC feature is a game-changer for our ecosystem. Guests verify once through One Wallet and can instantly access all partner services — hotel check-in, transport, attractions — without repeating KYC.</div>
+                    <div class="testimonial-author">VP of Product</div>
+                    <div class="testimonial-role">Travel Platform</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">We needed a compliance partner who understands both AMLO requirements and international AML standards. All ID gives us one platform for Thai and cross-border real estate transactions.</div>
+                    <div class="testimonial-author">Chief Compliance Officer</div>
+                    <div class="testimonial-role">Real Estate Developer</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================= FAQ ========================= -->
+    <section class="faq-section" id="faq">
+        <div class="container">
+            <div class="faq-header fade-in">
+                <h2>Frequently asked questions.</h2>
+            </div>
+            <div class="faq-list fade-in">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="this.parentElement.classList.toggle('active');this.nextElementSibling.classList.toggle('open')">
+                        What is KYC and why does my business need it?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Know Your Customer (KYC) is the process of verifying the identity of your customers. In Thailand, businesses regulated under AMLO, the Bank of Thailand, or the SEC are required to perform KYC. Even non-regulated businesses benefit from KYC to prevent fraud, reduce chargebacks, and build user trust.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="this.parentElement.classList.toggle('active');this.nextElementSibling.classList.toggle('open')">
+                        How long does integration take?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Most clients go live within 1-3 days using our Web SDK or Mobile SDK. API-based integrations typically take 1-2 weeks depending on your technical requirements. Our team provides dedicated integration support throughout the process.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="this.parentElement.classList.toggle('active');this.nextElementSibling.classList.toggle('open')">
+                        Does All ID comply with Thailand's PDPA?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Yes. All ID is fully compliant with Thailand's Personal Data Protection Act (PDPA). All personal data is processed in accordance with PDPA requirements, with data minimization, consent management, and the right to erasure built into our platform. Data can be processed locally within Thailand or in the region of your choice.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="this.parentElement.classList.toggle('active');this.nextElementSibling.classList.toggle('open')">
+                        What documents and countries are supported?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">All ID supports identity verification across 220+ countries and territories with over 14,000 document types — including Thai national ID cards, passports, driver licenses, and work permits. OCR supports all major scripts including Thai, Cyrillic, Arabic, Hindi, and Chinese.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="this.parentElement.classList.toggle('active');this.nextElementSibling.classList.toggle('open')">
+                        What is Reusable KYC?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Reusable KYC allows users who have already been verified to share their verification across multiple services within your partner ecosystem. Instead of repeating the full KYC process, users simply perform a quick liveness check to confirm their identity. This reduces onboarding friction, increases conversion rates by up to 30%, and achieves a 92% pass rate.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="this.parentElement.classList.toggle('active');this.nextElementSibling.classList.toggle('open')">
+                        How much does All ID cost?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">All ID offers flexible pay-per-verification pricing with no upfront fees. You only pay when a verification is successfully completed. We offer custom enterprise pricing based on your volume and feature requirements. Contact our team for a personalized quote.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================= WHY ALL ID ========================= -->
+    <section class="why-section" id="why">
+        <div class="container">
+            <div class="why-grid">
+                <div class="fade-in">
+                    <div class="why-header">
+                        <h2>Why All ID.</h2>
+                    </div>
+                    <div class="why-point">
+                        <h3>Local expertise, global technology</h3>
+                        <p>Built for Thailand's regulatory landscape — PDPA, AMLO, Bank of Thailand — powered by globally recognized verification infrastructure serving thousands of enterprises worldwide.</p>
+                    </div>
+                    <div class="why-point">
+                        <h3>One platform, full lifecycle</h3>
+                        <p>From initial screening through ongoing monitoring. Replace point solutions with a single platform that covers your entire compliance journey, from day one.</p>
+                    </div>
+                    <div class="why-point">
+                        <h3>AI-powered accuracy</h3>
+                        <p>Advanced machine learning and biometric technology deliver industry-leading accuracy while maintaining the fastest verification times in the market.</p>
+                    </div>
+                    <div class="why-point">
+                        <h3>Ecosystem-ready</h3>
+                        <p>Reusable KYC lets your users verify once and access services across your entire partner network — reducing friction and dramatically improving conversion.</p>
+                    </div>
+                </div>
+                <div class="fade-in">
+                    <div class="why-stats">
+                        <div class="why-stat-card">
+                            <div class="stat-num">92%</div>
+                            <div class="stat-desc">Pass rate with Reusable KYC</div>
+                        </div>
+                        <div class="why-stat-card">
+                            <div class="stat-num">272%</div>
+                            <div class="stat-desc">ROI on transaction monitoring</div>
+                        </div>
+                        <div class="why-stat-card">
+                            <div class="stat-num">240%</div>
+                            <div class="stat-desc">ROI on liveness detection</div>
+                        </div>
+                        <div class="why-stat-card">
+                            <div class="stat-num">&lt;6mo</div>
+                            <div class="stat-desc">Average payback period</div>
+                        </div>
+                    </div>
+                    <div class="recognition-box">
+                        <div class="recognition-label">Technology</div>
+                        <h3>Powered by globally recognized infrastructure</h3>
+                        <p>Our technology partner is recognized as a Leader by Gartner Magic Quadrant, Forrester Wave, and G2 across identity verification, AML, and fraud prevention.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================= AWARDS ========================= -->
+    <section class="awards-section" id="awards">
+        <div class="container">
+            <div class="awards-header fade-in">
+                <h2>Industry Recognition</h2>
+            </div>
+            <div class="awards-grid fade-in">
+                <div class="award-item">
+                    <div class="award-org">Gartner</div>
+                    <div class="award-title">Magic Quadrant Leader — Identity Verification 2025</div>
+                </div>
+                <div class="award-item">
+                    <div class="award-org">Forrester</div>
+                    <div class="award-title">Wave Leader — Identity Verification Solutions Q3 2025</div>
+                </div>
+                <div class="award-item">
+                    <div class="award-org">Chartis</div>
+                    <div class="award-title">Category Leader — AML Transaction Monitoring</div>
+                </div>
+                <div class="award-item">
+                    <div class="award-org">KuppingerCole</div>
+                    <div class="award-title">Overall Leader — Fraud Reduction Intelligence Platforms</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================= CTA ========================= -->
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <div class="cta-inner fade-in">
+                <h2>Ready to get started?</h2>
+                <p>Talk to our team about building compliant, trusted identity verification for your business.</p>
+                <a href="mailto:contact@allid.global" class="cta-btn-white">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================= FOOTER ========================= -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <span class="logo-all" style="color:#fff">All</span><span class="logo-sep">·</span><span class="logo-id" style="color:#CC0000">ID</span><span class="logo-sep" style="color:rgba(255,255,255,0.3)">·</span><span class="logo-global" style="color:rgba(255,255,255,0.45)">Global</span>
+                    </a>
+                    <p>Thailand's identity verification and compliance platform. Enterprise-grade KYC, KYB, AML, and fraud prevention for businesses operating in Southeast Asia.</p>
+                </div>
+                <div>
+                    <h4>Products</h4>
+                    <ul class="footer-links">
+                        <li><a href="#products">User Verification</a></li>
+                        <li><a href="#products">Business Verification</a></li>
+                        <li><a href="#products">AML Screening</a></li>
+                        <li><a href="#products">Transaction Monitoring</a></li>
+                        <li><a href="#products">Fraud Prevention</a></li>
+                        <li><a href="#platform">Platform</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Solutions</h4>
+                    <ul class="footer-links">
+                        <li><a href="#solutions">Financial Services</a></li>
+                        <li><a href="#solutions">Tourism</a></li>
+                        <li><a href="#solutions">Payments</a></li>
+                        <li><a href="#solutions">Real Estate</a></li>
+                        <li><a href="#solutions">E-Commerce</a></li>
+                        <li><a href="#solutions">Crypto</a></li>
+                        <li><a href="#solutions">Logistics</a></li>
+                        <li><a href="#solutions">iGaming</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#integration">Integration Docs</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#why">About All ID</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">PDPA Compliance</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 All ID Co., Ltd. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                    <a href="#">PDPA</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========================= SCRIPTS ========================= -->
+    <script>
+        // Intersection Observer for fade-in animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Smooth scroll for nav links + active state
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+                // Close mobile nav
+                document.getElementById('navLinks').classList.remove('open');
+            });
+        });
+    </script>
+
+</body>
+</html>
