@@ -193,38 +193,36 @@
             gap: 40px;
         }
 
-        /* Logo — C4 Tight: All·ID·Global */
+        /* Logo — Image-based
+           Design rationale (Ogilvy principle: "The consumer isn't a moron, she's your wife"):
+           - Navbar 64px → logo 26px = 40% ratio. Leaves 19px breathing room top/bottom.
+             At 7:1 aspect ratio, width ≈ 183px — confident but not competing with nav links (13px).
+             The 3D metallic texture adds inherent visual weight, so we size DOWN to compensate.
+           - Footer: 30px. Footer is generous space, logo anchors the brand column without shouting.
+           - Mobile: 22px. Smaller viewport, less horizontal real estate for a wide wordmark.
+           - Rule: A logo earns authority through restraint, not through size. */
         .logo {
             display: inline-flex;
-            align-items: baseline;
+            align-items: center;
             text-decoration: none;
             white-space: nowrap;
-            font-family: var(--sans);
-            font-size: 20px;
         }
 
-        .logo-all {
-            font-weight: 800;
-            color: var(--black);
+        .logo img {
+            height: 26px;
+            width: auto;
+            display: block;
         }
 
-        .logo-sep {
-            font-weight: 700;
-            color: var(--red);
-            font-size: 0.65em;
-            vertical-align: 0.12em;
-            margin: 0 0.5px;
+        .footer-brand .logo img {
+            height: 30px;
+            filter: brightness(1.35) contrast(0.95);
         }
 
-        .logo-id {
-            font-weight: 800;
-            color: var(--red);
-        }
-
-        .logo-global {
-            font-weight: 500;
-            color: var(--gray-text);
-            letter-spacing: 0.03em;
+        @media (max-width: 768px) {
+            .logo img {
+                height: 22px;
+            }
         }
 
         /* Nav Links — Bain uses small uppercase */
@@ -1533,7 +1531,7 @@
         <div class="container">
             <div class="navbar-left">
                 <a href="#" class="logo">
-                    <span class="logo-all">All</span><span class="logo-sep">·</span><span class="logo-id">ID</span><span class="logo-sep">·</span><span class="logo-global">Global</span>
+                    <img src="allid-logo.png" alt="All ID Global" />
                 </a>
                 <ul class="nav-links" id="navLinks">
                     <li><a href="#products" class="active">Products</a></li>
@@ -2117,7 +2115,7 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="#" class="logo">
-                        <span class="logo-all" style="color:#fff">All</span><span class="logo-sep">·</span><span class="logo-id" style="color:#CC0000">ID</span><span class="logo-sep" style="color:rgba(255,255,255,0.3)">·</span><span class="logo-global" style="color:rgba(255,255,255,0.45)">Global</span>
+                        <img src="allid-logo.png" alt="All ID Global" />
                     </a>
                     <p>Thailand's identity verification and compliance platform. Enterprise-grade KYC, KYB, AML, and fraud prevention for businesses operating in Southeast Asia.</p>
                 </div>
